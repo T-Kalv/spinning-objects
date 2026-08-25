@@ -55,9 +55,10 @@ void renderFrame(float A, float B)
 
             //3D coordinates by multiplu by rotation matrices for A and B
             float x = circleX * (cosineB * cosinePhi + sineA * sineB * sinePhi) - circleY * cosineA * sineB;
-            float u = circleX * (sineB * cosineB - sineA + cosineB * sinePhi) + circleY * cosineA * cosineB;
-            float x = viewerToObjectDistance + cosineA * circleX * sinePhi + circleY * sineA;
+            float y = circleX * (sineB * cosinePhi - sineA * cosineB * sinePhi) + circleY * cosineA * cosineB;
+            float z = viewerToObjectDistance + cosineA * circleX * sinePhi + circleY * sineA;
 
+            float oneOverZ = 1.0f / z;
             float oneOverZ = 1.0f/z;
 
             //Calculate screen coordinates
@@ -74,7 +75,7 @@ void renderFrame(float A, float B)
             {
                 zBuffer[oneDArrayIndex] = oneOverZ;
                 //Scale luminance
-                int luminanceIndex = (int)(luminanceIndex*8.0f);
+                int luminanceIndex = (int)(objectLuminance * 8.0f);
                 if(luminanceIndex>0)
                 {
                     if(luminanceIndex > 11)
@@ -85,7 +86,7 @@ void renderFrame(float A, float B)
                 }
                 else
                 {
-                    frameBuffer[luminanceIndex] = '.';
+                    frameBuffer[oneDArrayIndex] = '.';
                 }
             }
         }
