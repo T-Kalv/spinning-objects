@@ -41,7 +41,7 @@ float customFmod(float x, float y)
 }
 
 //Taylor Series Sine implementation
-float custom_sine(float x)
+float customSine(float x)
 {
     x = customFmod(x+PI, 2*PI) - PI;
     float x2 = x*x;
@@ -54,7 +54,7 @@ float custom_sine(float x)
 
     //x^5/5!
     term = (term*x2) / 20.0f;
-    sum = sum - term;
+    sum = sum + term;
 
     //x^7/7!
     term = (term*x2) / 42.0f;
@@ -62,12 +62,12 @@ float custom_sine(float x)
 
     //x^9/9!
     term = (term*x2) / 72.0f;
-    sum = sum - term;
+    sum = sum + term;
 
     return sum;
 }
 
-float customcosine(float x)
+float customCosine(float x)
 {
     return customSine(x + PI/2.0f);
 }
