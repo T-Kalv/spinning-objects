@@ -13,6 +13,12 @@
 //ASCII characters list ordered from dark to bright
 const char illuminatonCharacters[] = ".,-~:;=!*#$@";
 
+//ANSI color codes
+const char* PINKFROSTING = "\x1b[38;5;213m";
+const char* DOUGH = "\x1b[38;5;136m";
+const char* RESET = "\x1b[0m";
+const char* SPRINKLES[] = {"\x1b[38;5;51m", "\x1b[38;5;226m", "\x1b[38;5;46m"};
+
 void clearScreen()
 {
     std::cout << "\x1b[2J\x1b[H";
@@ -98,7 +104,28 @@ void renderFrame(float A, float B)
     std::cout << "\x1b[H";
     for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
     {
-        std::cout << frameBuffer[i];
+        char character = frameBuffer[i];
+        //Empty background
+        if (character == ' ')
+        {
+            std::cout << character;
+        }
+        //Dough
+        else if (character == '.' || character == ',' ||  character == '-')
+        {
+            std::cout << DOUGH << character << RESET;
+        }
+        //Pink frosting with sprinkles
+        else if (character == '@' || character == '#' || character == '$')
+        {
+            int sprinkleColour = (i % 3);
+            std::cout << SPRINKLES[sprinkleColour] << character << RESET;
+        }
+        else
+        {
+            std::cout << PINKFROSTING << character << RESET;
+        }
+            
         if (i % SCREEN_WIDTH == SCREEN_WIDTH - 1)
         {
             std::cout << '\n';
