@@ -1,5 +1,7 @@
 # Spinning Objects
 
+![Spinning Torus Sample](assets/donut.gif)
+
 A zero-dependency, cross-platform 3D rendering engine built entirely from scratch in C++ that consists collection of Spinning Objects.
 
 This project renders 3D mathematical geometries directly into the terminal using ASCII characters. Instead of relying on standard C++ libraries (like `<cmath>`), the engine features a custom-built, lightweight mathematics library utilising Taylor Series expansions to calculate trigonometric functions and 3D projection matrices in real-time.
