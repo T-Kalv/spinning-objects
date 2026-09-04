@@ -7,6 +7,7 @@
 // Code
 
 #include "renderer.h"
+#include "Torus.h"
 #include <iostream>
 
 #ifdef _WIN32
@@ -30,9 +31,10 @@ int main()
     float B = 0.0f;
 
     clearScreen();
+    Torus donut;
     while (true)
     {
-        renderFrame(A,B);
+        renderFrame(&donut,A, B);
         A = A + 0.04f;
         B = B + 0.02f;
         sleepMilliseconds(30);

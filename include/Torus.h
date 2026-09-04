@@ -1,4 +1,4 @@
-// Program: renderer.h
+// Program: Torus.h
 // Author:
 // Module:
 // Email: 
@@ -6,15 +6,15 @@
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Code
 
-#ifndef RENDERER_H
-#define RENDERER_H
+#ifndef TORUS_H
+#define TORUS_H
 
 #include "Shape.h"
 
-const int SCREEN_WIDTH = 80;
-const int SCREEN_HEIGHT = 22;
-
-void renderFrame(Shape* activeShape, float A, float B);
-void clearScreen();
+class Torus : public Shape
+{
+    public:
+        void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight) override;
+};
 
 #endif
