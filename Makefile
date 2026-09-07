@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
 TARGET = spinningObjects
 
-SRCS = src/main.cpp src/customMathLib.cpp src/renderer.cpp src/Torus.cpp
+SRCS = src/main.cpp src/customMathLib.cpp src/renderer.cpp src/Torus.cpp src/Cube.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target

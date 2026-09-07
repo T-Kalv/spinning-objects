@@ -31,7 +31,7 @@ This project uses a standard Makefile for simple compilation
 
 **Prerequisites:** A C++17 compatible compiler (e.g., `g++`) and `make`
 1. Clone the repository:
-   `git clone `
+   `git clone https://github.com/T-Kalv/spinning-objects.git`
 2. Navigate to the directory and compile:
    `cd spinning-objects-library`
    `make`

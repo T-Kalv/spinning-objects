@@ -1,4 +1,4 @@
-// Program: Torus.h
+// Program: Torus.cpp
 // Author:
 // Module:
 // Email: 

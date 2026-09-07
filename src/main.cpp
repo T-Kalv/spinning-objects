@@ -8,6 +8,7 @@
 
 #include "renderer.h"
 #include "Torus.h"
+#include "Cube.h"
 #include <iostream>
 
 #ifdef _WIN32
@@ -32,9 +33,10 @@ int main()
 
     clearScreen();
     Torus donut;
+    Cube cube;
     while (true)
     {
-        renderFrame(&donut,A, B);
+        renderFrame(&cube,A, B);
         A = A + 0.04f;
         B = B + 0.02f;
         sleepMilliseconds(30);
