@@ -1,6 +1,9 @@
 # Spinning Objects
 
-![Spinning Torus Sample](assets/donut.gif)
+<p align="center">
+  <img src="assets/donut.gif" alt="Spinning Torus Sample" width="50%" />
+  <img src="assets/cube.gif" alt="Spinning Cube Sample" width="38%" />
+</p>
 
 A zero-dependency, cross-platform 3D rendering engine built entirely from scratch in C++ that consists of a collection of Spinning Objects.
 
@@ -17,12 +20,13 @@ This project renders 3D mathematical geometries directly into the terminal using
 To support a increasingly growing library of geometry for different types of spinning objects, the engine utilises OOP.
 
 * `Shape.h`: An abstract base class enforcing a strict `drawToBuffer` interface.
-* `Torus.cpp`: A derived class that entirely encapsulates the 3D mathematical geometry and rotation matrices for the donut
+* `Torus.cpp`: A derived class that entirely encapsulates the 3D mathematical geometry and rotation matrices for the Donut
+* `Cube.cpp`: A derived class calculating 3D cartesian coordinates, Euler rotations and face-specific RGB ANSI colours for spinning Cube.
 * `rendered.cpp`: The core engine loop. It remains decoupled from the geometry and just passes in the Z-buffer and frame buffer to the active shape before applying the ANSI colour mapping and pushing to std out.
 
 ## Spinning Objects Library
-* **Torus:** A classic 3D donut (torus) featuring dynamic pink frosting and animated sprinkles
-* *(Upcoming)* 3D Cube
+* **Torus:** A classic 3D Donut (Torus) featuring dynamic pink frosting and animated sprinkles
+* *RGB Cube* A 3D cube featuring dynamic Red, Green and Blue faces
 * *(Upcoming)* 3D Cylinder
 * *(Upcoming)* 3D Pyramid
 
