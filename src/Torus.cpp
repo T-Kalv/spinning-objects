@@ -12,7 +12,7 @@
 //ASCII characters list ordered from dark to bright
 const char illuminatonCharacters[] = ".,-~:;=!*#$@";
 
-void Torus::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight)
+void Torus::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight)
 {
     float cosineA = customCosine(A);
     float sineA = customSine(A);
@@ -62,17 +62,30 @@ void Torus::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, in
                     
                         //Scale luminance
                         int luminanceIndex = (int)(objectLuminance * 8.0f);
+                        char character = '.';
                         if (luminanceIndex > 0)
                         {
                             if (luminanceIndex > 11)
                             {
                                 luminanceIndex = 11;
+                                character = illuminatonCharacters[luminanceIndex];
                             }
-                            frameBuffer[oneDArrayIndex] = illuminatonCharacters[luminanceIndex]; 
+                            frameBuffer[oneDArrayIndex] = character;
+                        }
+                        if (character == '.' || character == ',' || character == '-')
+                        {
+                            //Dough
+                            colourBuffer[oneDArrayIndex] = 136;
+                        }
+                        else if ((character == '@' || character == '#' || character == '$') && (oneDArrayIndex % 13 == 0))
+                        {
+                            int sprinkleColours[] = {51, 226, 46};
+                            colourBuffer[oneDArrayIndex] = sprinkleColours[oneDArrayIndex % 3];
                         }
                         else
                         {
-                            frameBuffer[oneDArrayIndex] = '.';
+                            //Pink frosting
+                            colourBuffer[oneDArrayIndex] = 213;
                         }
                     }
                 }

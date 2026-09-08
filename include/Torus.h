@@ -14,7 +14,7 @@
 class Torus : public Shape
 {
     public:
-        void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight) override;
+        void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight) override;
 };
 
 #endif

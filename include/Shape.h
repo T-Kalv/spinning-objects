@@ -12,7 +12,7 @@
 class Shape
 {
     public:
-        virtual void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight) = 0;
+        virtual void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight) = 0;
         virtual ~Shape() {}
 
 };

@@ -19,24 +19,21 @@ void renderFrame(Shape* activeShape, float A, float B)
 {
     float zBuffer[SCREEN_HEIGHT * SCREEN_WIDTH];
     char frameBuffer[SCREEN_HEIGHT * SCREEN_WIDTH];
+    int colourBuffer[SCREEN_HEIGHT * SCREEN_WIDTH];
 
     for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
     {
         zBuffer[i] = 0.0f;
         frameBuffer[i] = ' ';
+        //Default white colour
+        colourBuffer[i] = 231;
     }
 
     //Populate buffer
     if(activeShape != nullptr)
     {
-        activeShape->drawToBuffer(A, B, zBuffer, frameBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
+        activeShape->drawToBuffer(A, B, zBuffer, frameBuffer, colourBuffer, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
-
-    //Render buffers to terminal with ANSI colours
-    const char* PINK = "\x1b[38;5;213m";
-    const char* DOUGH = "\x1b[38;5;136m";
-    const char* RESET = "\x1b[0m";
-    const char* SPRINKLES[] = {"\x1b[38;5;51m", "\x1b[38;5;226m", "\x1b[38;5;46m"};
 
     std::cout << "\x1b[H";
     for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
@@ -47,28 +44,15 @@ void renderFrame(Shape* activeShape, float A, float B)
         }
         else
         {
-            char c = frameBuffer[i];
-            if (c == ' ')
+            if (frameBuffer[i] == ' ')
             {
-                std::cout << c;
-            }
-            else if (c == '.' || c == ',' || c == '-')
-            {
-                std::cout << DOUGH << c << RESET;
+                std::cout << ' ';
             }
             else
             {
-                if (c == '@' || c == '#' || c == '$')
-                {
-                    if (i % 13 == 0)
-                    {
-                        int sprinkleColor = (i % 3);
-                        std::cout << SPRINKLES[sprinkleColor] << c << RESET;
-                        continue;
-                    }
-                }
-                std::cout << PINK << c << RESET;
+                std::cout << "\x1b[38;5;" << colourBuffer[i] << "m" << frameBuffer[i] << "\x1b[0m";
             }
+            
         }
     }
 }

@@ -14,10 +14,10 @@
 class Cube : public Shape
 {
     public:
-        void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight) override;
+        void drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight) override;
 
     private:
-        void calculateForSurface(float cubeX, float cubeY, float cubeZ, float normalX, float normalY, float normalZ, float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight);
+        void calculateForSurface(float cubeX, float cubeY, float cubeZ, float normalX, float normalY, float normalZ, int colourCode, float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight);
 };
 
 #endif

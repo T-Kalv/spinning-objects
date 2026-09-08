@@ -11,7 +11,7 @@
 
 const char illuminatonCharacters[] = ".,-~:;=!*#$@";
 
-void Cube::calculateForSurface(float cubeX, float cubeY, float cubeZ, float normalX, float normalY, float normalZ, float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight)
+void Cube::calculateForSurface(float cubeX, float cubeY, float cubeZ, float normalX, float normalY, float normalZ, int colourCode, float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight)
 {
     float cosineA = customCosine(A);
     float sineA = customSine(A);
@@ -53,6 +53,7 @@ void Cube::calculateForSurface(float cubeX, float cubeY, float cubeZ, float norm
         if (oneOverZ > zBuffer[oneDArrayIndex])
         {
             zBuffer[oneDArrayIndex] = oneOverZ;
+            colourBuffer[oneDArrayIndex] = colourCode;
             //Map luminance -1 to 1 to array index 0 to 11
             int luminanceIndex = (int)((objectLuminance + 1.0f) *5.5f);
             if (luminanceIndex >= 0)
@@ -72,7 +73,7 @@ void Cube::calculateForSurface(float cubeX, float cubeY, float cubeZ, float norm
     }
 }
 
-void Cube::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int screenWidth, int screenHeight)
+void Cube::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight)
 {
     float cubeSize = 1.5f;
     float densityStep = 0.05f;
@@ -83,17 +84,17 @@ void Cube::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int
         for (float cubeY = -cubeSize; cubeY < cubeSize; cubeY = cubeY + densityStep)
         {
             //Back face
-            calculateForSurface(cubeX, cubeY, cubeSize, 0, 0, 1, A, B, zBuffer, frameBuffer, screenWidth, screenHeight);
+            calculateForSurface(cubeX, cubeY, cubeSize, 0, 0, 1, 196, A, B, zBuffer, frameBuffer, colourBuffer, screenWidth, screenHeight);
             //Front face
-            calculateForSurface(cubeX, cubeY, -cubeSize, 0, 0, -1, A, B, zBuffer, frameBuffer, screenWidth, screenHeight);
+            calculateForSurface(cubeX, cubeY, -cubeSize, 0, 0, -1, 196, A, B, zBuffer, frameBuffer, colourBuffer, screenWidth, screenHeight);
             //Right face
-            calculateForSurface(cubeSize, cubeY, cubeX, 1, 0, 0, A, B, zBuffer, frameBuffer, screenWidth, screenHeight);
+            calculateForSurface(cubeSize, cubeY, cubeX, 1, 0, 0, 46, A, B, zBuffer, frameBuffer, colourBuffer, screenWidth, screenHeight);
             //Left face
-            calculateForSurface(-cubeSize, cubeY, cubeX, -1, 0, 0, A, B, zBuffer, frameBuffer, screenWidth, screenHeight);
+            calculateForSurface(-cubeSize, cubeY, cubeX, -1, 0, 0, 46, A, B, zBuffer, frameBuffer, colourBuffer, screenWidth, screenHeight);
             //Top face
-            calculateForSurface(cubeX, -cubeSize, cubeY, 0, -1, 0, A, B, zBuffer, frameBuffer, screenWidth, screenHeight);
+            calculateForSurface(cubeX, -cubeSize, cubeY, 0, -1, 0, 39, A, B, zBuffer, frameBuffer, colourBuffer, screenWidth, screenHeight);
             //Bottom face
-            calculateForSurface(cubeX, cubeSize, cubeY, 0, 1, 0, A, B, zBuffer, frameBuffer, screenWidth, screenHeight);
+            calculateForSurface(cubeX, cubeSize, cubeY, 0, 1, 0, 39, A, B, zBuffer, frameBuffer, colourBuffer, screenWidth, screenHeight);
         }  
     }
 }
