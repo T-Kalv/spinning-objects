@@ -19,18 +19,18 @@ void Cylinder::calculateForPoint(float pointX, float pointY, float pointZ, float
     float sineB = customSine(B);
 
     //Rotate 3D coordinates
-    float x1 = pointX * cosineB + pointZ * sineB;
-    float y1 = pointY;
-    float z1 = -pointX * sineB + pointZ * cosineB;
+    float x1 = pointX * cosineB - pointY * sineB;
+    float y1 = pointX * sineB + pointY * cosineB;
+    float z1 = pointZ;
 
     float rotatedX = x1;
     float rotatedY = y1 * cosineA - z1 * sineA;
     float rotatedZ = y1 * sineA + z1 * cosineA;
 
     //Rotate surface normal for lighting conditions
-    //float normalX1 = normalX * cosineB + normalZ * sineB;
-    float normalY1 = normalY;
-    float normalZ1 = -normalX * sineB + normalZ * cosineB;
+    //float normalX1 = normalX * cosineB - normalY * sineB;
+    float normalY1 = normalX * sineB + normalY* cosineB;
+    float normalZ1 = normalZ;
 
     float rotatedNormalZ = normalY1 * sineA + normalZ1 * cosineA;
 
@@ -73,7 +73,7 @@ void Cylinder::calculateForPoint(float pointX, float pointY, float pointZ, float
 void Cylinder::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer, int* colourBuffer, int screenWidth, int screenHeight)
 {
     float radius = 1.0f;
-    float halfHeight = 1.2f;
+    float halfHeight = 2.25f;
     float thetaStep = 0.05f;
     float lengthStep = 0.05f;
     float radiusStep = 0.05f;
@@ -95,12 +95,14 @@ void Cylinder::drawToBuffer(float A, float B, float* zBuffer, char* frameBuffer,
         }
     }
 
+    float capRadius = radius - 0.02f;
+
     for (float theta = 0; theta < 6.28f; theta = theta + thetaStep)
     {
         float cosineTheta = customCosine(theta);
         float sineTheta = customSine(theta);
 
-        for (float r = 0; r <= radius; r = r + radiusStep)
+        for (float r = 0; r <= capRadius; r = r + radiusStep)
         {
             float pointX = r * cosineTheta;
             float pointZ = r * sineTheta;
