@@ -9,6 +9,7 @@
 #include "renderer.h"
 #include "Torus.h"
 #include "Cube.h"
+#include "Cylinder.h"
 #include <iostream>
 
 #ifdef _WIN32
@@ -34,9 +35,10 @@ int main()
     clearScreen();
     Torus donut;
     Cube cube;
+    Cylinder cylinder;
     while (true)
     {
-        renderFrame(&cube,A, B);
+        renderFrame(&cylinder, A, B);
         A = A + 0.04f;
         B = B + 0.02f;
         sleepMilliseconds(30);
