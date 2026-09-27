@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="assets/donut.gif" alt="Spinning Torus Sample" width="35%" />
-  <img src="assets/cube.gif" alt="Spinning Cube Sample" width=26%" />
+  <img src="assets/cube.gif" alt="Spinning Cube Sample" width="26%" />
   <img src="assets/cylinder.gif" alt="Spinning Cube Sample" width="35%" />
 </p>
 
